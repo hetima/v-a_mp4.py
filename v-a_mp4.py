@@ -7,12 +7,12 @@ import subprocess
 # videoがjpgかpngの場合、音声の長さに合わせる
 
 FFMPEG_PATH = "ffmpeg"
+AUDIO_CODEC = "libfdk_aac"
 VIDEO_PRESETS = {
     "x264": ["-c:v", "libx264", "-pix_fmt", "yuv420p", "-g", "90", "-preset", "slow", "-crf", "23", "-tune", "film"],
     "x265": ["-c:v", "libx265", "-pix_fmt", "yuv420p", "-g", "90", "-preset", "medium", "-crf", "26", "-tune", "ssim", "-tag:v", "hvc1"]
 }
 IMAGE_PRESET = ["-c:v", "libx264", "-preset", "fast", "-crf", "24", "-tune", "stillimage", "-pix_fmt", "yuv420p", "-shortest"]
-
 
 def input_file_path(mess) -> str:
     v_path = inquirer.filepath(message=mess).execute()
@@ -53,7 +53,7 @@ if __name__ == "__main__":
     if a_path.endswith(".mp4") or a_path.endswith(".m4a"):
         a_args = ["-c:a", "copy"]
     elif a_path.endswith(".wav"):
-        a_args = ["-c:a", "libfdk_aac", "-ab", select_bit_rate()]
+        a_args = ["-c:a", AUDIO_CODEC, "-ab", select_bit_rate()]
     else:
         if a_path == "" and v_path.endswith(".ts"):
             a_path = v_path
