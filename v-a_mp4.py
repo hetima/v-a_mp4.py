@@ -42,7 +42,7 @@ if __name__ == "__main__":
         v_args = ["-c:v", "copy"]
     elif v_path.endswith(".mov"):
         v_args = select_video_codec()
-    elif v_path.endswith(".jpg") or v_path.endswith(".png"):
+    elif v_path.endswith(".jpg") or v_path.endswith(".jpeg") or v_path.endswith(".png"):
         pre_args = ["-loop", "1", "-r", "24"]
         v_args = IMAGE_PRESET
     else:
