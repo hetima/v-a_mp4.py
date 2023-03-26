@@ -62,7 +62,7 @@ if __name__ == "__main__":
             print("invalid aidio file")
             exit(0)
 
-    out_path = os.path.splitext(a_path)[0]
+    out_path = os.path.splitext(v_path)[0]
     out_path = out_path + ".out.mp4"
 
     args = [FFMPEG_PATH, '-hide_banner']
