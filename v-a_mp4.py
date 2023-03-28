@@ -38,7 +38,7 @@ if __name__ == "__main__":
     v_path = input_file_path("video file path:")
     pre_args = []
 
-    if v_path.endswith(".mp4") or v_path.endswith(".ts"):
+    if v_path.endswith(".mp4") or v_path.endswith(".ts") or v_path.endswith(".mkv"):
         v_args = ["-c:v", "copy"]
     elif v_path.endswith(".mov"):
         v_args = select_video_codec()
@@ -55,7 +55,7 @@ if __name__ == "__main__":
     elif a_path.endswith(".wav"):
         a_args = ["-c:a", AUDIO_CODEC, "-ab", select_bit_rate()]
     else:
-        if a_path == "" and v_path.endswith(".ts"):
+        if a_path == "" and (v_path.endswith(".ts") or v_path.endswith(".mkv")):
             a_path = v_path
             a_args = ["-c:a", "copy"]
         else:
