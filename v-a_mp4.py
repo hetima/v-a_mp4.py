@@ -34,6 +34,15 @@ def select_video_codec() -> list:
     slct = inquirer.rawlist(message="Select video codec:", choices=dirs, multiselect=False).execute()
     return VIDEO_PRESETS[slct]
 
+def do_wav_to_m4a(v_path):
+    out_path = os.path.splitext(v_path)[0] + ".out.m4a"
+    args = [FFMPEG_PATH, '-hide_banner']
+    args.extend(["-i", v_path])
+    a_args = ["-c:a", AUDIO_CODEC, "-ab", select_bit_rate()]
+    args.extend(a_args)
+    args.append(out_path)
+    subprocess.run(args)
+
 if __name__ == "__main__":
     v_path = input_file_path("video file path:")
     pre_args = []
@@ -45,6 +54,9 @@ if __name__ == "__main__":
     elif v_path.endswith(".jpg") or v_path.endswith(".jpeg") or v_path.endswith(".png"):
         pre_args = ["-loop", "1", "-r", "24"]
         v_args = IMAGE_PRESET
+    elif v_path.endswith(".wav"):
+        do_wav_to_m4a(v_path)
+        exit(0)
     else:
         print("invalid video file")
         exit(0)

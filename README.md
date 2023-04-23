@@ -19,6 +19,7 @@ python v-a_mp4.py
 - aac変換はlibfdk_aacで行います。変更したい場合はスクリプトを直接編集してください
 - videoがtsかmkvでaudioを入力しない場合、mp4にコピー変換します
 - videoがjpgかpngの場合、音声の長さに合わせます
+- videoがwavの場合、m4aに変換します
 
 ffmpegのパスや変換プリセットはスクリプトを直接編集してください。
 libfdk_aacが使えるffmpegは [ここ](https://github.com/AnimMouse/ffmpeg-stable-autobuild) などで入手できます。
