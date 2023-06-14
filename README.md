@@ -17,9 +17,10 @@ python v-a_mp4.py
 - 対応動画ファイルはmp4、ts、mkv、mov、jpg、pngです。mp4、ts、mkvの場合はコピーします。mov、jpg、pngの場合は変換します。
 - 対応音声ファイルはmp4、m4a、wavです。mp4、m4aの場合はコピーします。wavの場合は変換します。
 - aac変換はlibfdk_aacで行います。変更したい場合はスクリプトを直接編集してください
-- videoがtsかmkvでaudioを入力しない場合、mp4にコピー変換します
+- videoがtsかmkvかmovでaudioを入力しない場合、mp4にコピー変換します
 - videoがjpgかpngの場合、音声の長さに合わせます
 - videoがwavの場合、m4aに変換します
+- audioに`an`と入力すると`-an`オプションを付加しオーディオなしになります
 
 ffmpegのパスや変換プリセットはスクリプトを直接編集してください。
 libfdk_aacが使えるffmpegは [ここ](https://github.com/AnimMouse/ffmpeg-stable-autobuild) などで入手できます。
