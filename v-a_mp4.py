@@ -20,8 +20,8 @@ def input_file_path(mess) -> str:
         return ""
     if v_path[0] == '"' or v_path[0] == "'":
         v_path = v_path[1:-1]
-    if not os.path.exists(v_path):
-        return ""
+    # if not os.path.exists(v_path):
+    #     return ""
     return v_path
 
 def select_bit_rate() -> str:
@@ -62,12 +62,14 @@ if __name__ == "__main__":
         exit(0)
 
     a_path = input_file_path("audio file path:")
-    if a_path.endswith(".mp4") or a_path.endswith(".m4a"):
+    if a_path == "an":
+        a_args = ["-an"]
+    elif a_path.endswith(".mp4") or a_path.endswith(".m4a"):
         a_args = ["-c:a", "copy"]
     elif a_path.endswith(".wav"):
         a_args = ["-c:a", AUDIO_CODEC, "-ab", select_bit_rate()]
     else:
-        if a_path == "" and (v_path.endswith(".ts") or v_path.endswith(".mkv")):
+        if a_path == "" and (v_path.endswith(".ts") or v_path.endswith(".mkv") or v_path.endswith(".mov")):
             a_path = v_path
             a_args = ["-c:a", "copy"]
         else:
@@ -79,7 +81,10 @@ if __name__ == "__main__":
 
     args = [FFMPEG_PATH, '-hide_banner']
     args.extend(pre_args)
-    args.extend(["-i", v_path, "-i", a_path, "-map", "0:v", "-map", "1:a"])
+    if a_path == "an":
+        args.extend(["-i", v_path, "-map", "0:v"])
+    else:
+        args.extend(["-i", v_path, "-i", a_path, "-map", "0:v", "-map", "1:a"])
     args.extend(v_args)
     args.extend(a_args)
     args.append(out_path)
