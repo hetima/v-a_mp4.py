@@ -15,7 +15,7 @@ python v-a_mp4.py
 1. 動画ファイルと同じ場所に「ファイル名.out.mp4」として書き出されます。
 
 - 対応動画ファイルはmp4、ts、mkv、mov、jpg、pngです。mp4、ts、mkvの場合はコピーします。mov、jpg、pngの場合は変換します。
-- 対応音声ファイルはmp4、m4a、wavです。mp4、m4aの場合はコピーします。wavの場合は変換します。
+- 対応音声ファイルはmp4、ts、m4a、wavです。mp4、ts、m4aの場合はコピーします。wavの場合は変換します。
 - aac変換はlibfdk_aacで行います。変更したい場合はスクリプトを直接編集してください
 - videoがtsかmkvかmovでaudioを入力しない場合、mp4にコピー変換します
 - videoがjpgかpngの場合、音声の長さに合わせます

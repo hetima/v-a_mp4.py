@@ -64,7 +64,7 @@ if __name__ == "__main__":
     a_path = input_file_path("audio file path:")
     if a_path == "an":
         a_args = ["-an"]
-    elif a_path.endswith(".mp4") or a_path.endswith(".m4a"):
+    elif a_path.endswith(".mp4") or a_path.endswith(".m4a") or a_path.endswith(".ts"):
         a_args = ["-c:a", "copy"]
     elif a_path.endswith(".wav"):
         a_args = ["-c:a", AUDIO_CODEC, "-ab", select_bit_rate()]
